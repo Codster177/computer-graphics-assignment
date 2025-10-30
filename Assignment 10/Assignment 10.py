@@ -11,7 +11,7 @@ pygame.init()
 # Window setup
 width = 600
 height = 600
-screen = pygame.display.set_mode((width, height), flags=pygame.OPENGL | pygame.RESIZABLE)
+screen = pygame.display.set_mode((width, height), flags=pygame.OPENGL | pygame.RESIZABLE | pygame.DOUBLEBUF)
 pygame.display.set_caption(title="Assignment 10: Cody Taylor")
 gl = moderngl.get_context()
 
@@ -409,6 +409,7 @@ while running:
     RenderFloor(floor_program, floorVBA, floorTex, vertexArgs, fragmentArgs)
     object.render(nInstances=transformation_count)
     pygame.display.flip()
+    pygame.display.gl_set_attribute(pygame.GL_DOUBLEBUFFER, 1)
     
     if (rotateLight != 0):
         light_rotation_angle += rotateLight * light_rotation_interval
